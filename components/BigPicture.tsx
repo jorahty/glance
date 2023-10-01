@@ -3,5 +3,5 @@ interface Props {
 }
 
 export default function BigPicture({ content }: Props) {
-  return <textarea>{content}</textarea>;
+  return <textarea defaultValue={content} />;
 }
