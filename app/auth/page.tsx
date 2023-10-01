@@ -1,19 +1,17 @@
-import AuthForm from './auth-form';
+'use client';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-export default function Home() {
-  return (
-    <div className="row">
-      <div className="col-6">
-        <h1 className="header">Supabase Auth + Storage</h1>
-        <p className="">
-          Experience our Auth and Storage through a simple profile management
-          example. Create a user profile and upload an avatar image. Fast,
-          simple, secure.
-        </p>
-      </div>
-      <div className="col-6 auth-widget">
-        <AuthForm />
-      </div>
-    </div>
-  );
+export default function Auth() {
+  const supabase = createClientComponentClient();
+
+  const signIn = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:3000/auth/callback',
+      },
+    });
+  };
+
+  return <button onClick={signIn}>Sign in with Google</button>;
 }
