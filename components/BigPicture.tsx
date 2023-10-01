@@ -1,11 +1,13 @@
 'use client';
 import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 interface Props {
   content: string;
 }
 
 export default function BigPicture({ content }: Props) {
+  const supabase = createClientComponentClient();
   const [text, setText] = useState(content);
   const timerIdRef = useRef<undefined | NodeJS.Timeout>(undefined);
   const timerActiveRef = useRef(false);
@@ -15,7 +17,7 @@ export default function BigPicture({ content }: Props) {
 
     if (timerActiveRef.current) {
       const newTimerId = setTimeout(() => {
-        console.log('save');
+        updateBigPicture();
       }, 2000);
 
       timerIdRef.current = newTimerId;
@@ -25,6 +27,14 @@ export default function BigPicture({ content }: Props) {
   const onInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
     timerActiveRef.current = true;
+  };
+
+  const updateBigPicture = async () => {
+    let { error } = await supabase
+      .from('big_pictures')
+      .upsert({ content: text });
+
+    if (error) console.log(error.message);
   };
 
   return <textarea value={text} onInput={onInput} />;
