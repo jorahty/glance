@@ -11,10 +11,14 @@ export default async function Account() {
     data: { session },
   } = await supabase.auth.getSession();
 
+  const {
+    data: { content },
+  } = await supabase.from('big_pictures').select().single();
+
   return (
     <>
       <AccountForm session={session} />
-      <BigPicture content="Hello, World!" />
+      <BigPicture content={content} />
     </>
   );
 }
