@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+}
+
+.radix-themes {
+  --default-font-family: verdana;
+}
+
+button,
+.rt-BaseMenuItem {
+  cursor: pointer !important;
+}
+
+.rt-TextAreaInput {
+  background-color: var(--color-panel);
+  border-radius: 5px;
+  outline-offset: -2px;
+}
+
+.rt-SelectTrigger {
+  background-color: var(--gray-surface);
+}

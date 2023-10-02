@@ -1,7 +1,7 @@
 'use client';
 import '@radix-ui/themes/styles.css';
-// import '@/style/theme-config.css';
-import { ThemeProvider, useTheme } from 'next-themes';
+import '@/style/theme-config.css';
+import { ThemeProvider } from 'next-themes';
 import { Theme as RadixTheme } from '@radix-ui/themes';
 
 interface Props {
