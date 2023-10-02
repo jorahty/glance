@@ -15,23 +15,24 @@ export default function TodoTextArea({ initialContent }: Props) {
   const isTyping = useRef(false);
 
   useEffect(() => {
-    // const channel = supabase
-    //   .channel('')
-    //   .on(
-    //     'postgres_changes',
-    //     {
-    //       event: '*',
-    //       schema: 'public',
-    //       table: 'big_pictures',
-    //     },
-    //     (payload: any) => {
-    //       if (!isTyping.current) setContent(payload.new.content);
-    //     }
-    //   )
-    //   .subscribe();
-    // return () => {
-    //   supabase.removeChannel(channel);
-    // };
+    const channel = supabase
+      .channel('')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'todos',
+        },
+        (payload: any) => {
+          if (!isTyping.current) setContent(payload.new.content);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [supabase]);
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -47,7 +48,7 @@ export default function TodoTextArea({ initialContent }: Props) {
   };
 
   const sendContent = async (content: string) => {
-    // await supabase.from('big_pictures').upsert({ content });
+    await supabase.from('todos').upsert({ content });
   };
 
   return <TextArea value={content} onChange={onChange} />;
