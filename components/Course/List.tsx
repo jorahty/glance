@@ -29,6 +29,11 @@ export default function CourseList({ courses: initialCourses }: Props) {
 
             if (payload.eventType === 'INSERT') {
               newCourses.push(payload.new);
+            } else if (payload.eventType === 'UPDATE') {
+              const index = newCourses.findIndex(
+                (course) => course.id === payload.new.id
+              );
+              newCourses[index].name = payload.new.name;
             } else if (payload.eventType === 'DELETE') {
               const index = newCourses.findIndex(
                 (course) => course.id === payload.old.id

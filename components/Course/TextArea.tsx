@@ -16,7 +16,7 @@ export default function CourseTextArea({ initialContent, courseId }: Props) {
 
   useEffect(() => {
     const channel = supabase
-      .channel('realtime course')
+      .channel(`realtime course: ${courseId}`)
       .on(
         'postgres_changes',
         {
