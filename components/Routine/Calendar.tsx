@@ -1,3 +1,6 @@
+'use client';
+import { useEffect, useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Inset } from '@radix-ui/themes';
 
 import Filter from './Filter';
@@ -6,7 +9,33 @@ interface Props {
   calendarId: string;
 }
 
-export default function RoutineCalendar({ calendarId }: Props) {
+export default function RoutineCalendar({
+  calendarId: initialCalendarId,
+}: Props) {
+  const supabase = createClientComponentClient();
+  const [calendarId, setCalendarId] = useState(initialCalendarId);
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'routines',
+        },
+        (payload: any) => {
+          setCalendarId(payload.new.calendar_id);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [supabase]);
+
   return (
     <Inset style={{ flexGrow: 1 }} pt="current">
       <Filter>
