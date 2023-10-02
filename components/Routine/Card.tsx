@@ -1,9 +1,17 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { Card, Flex, Heading } from '@radix-ui/themes';
 
 // import RoutineInput from './RoutineInput';
 import RoutineCalendar from './Calendar';
 
-export default function Routine() {
+export default async function Routine() {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { calendar_id: calendarId },
+  } = await supabase.from('routines').select().single();
+
   return (
     <Card style={{ height: '70vh' }}>
       <Flex direction="column" gap="3" height="100%">
@@ -11,7 +19,7 @@ export default function Routine() {
           <Heading>Routine</Heading>
           {/* <RoutineInput /> */}
         </Flex>
-        <RoutineCalendar />
+        <RoutineCalendar calendarId={calendarId} />
       </Flex>
     </Card>
   );
