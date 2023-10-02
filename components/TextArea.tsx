@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useRef } from 'react';
+import { ChangeEventHandler } from 'react';
 import { Inset, TextArea as RadixTextArea } from '@radix-ui/themes';
 
 interface Props {
