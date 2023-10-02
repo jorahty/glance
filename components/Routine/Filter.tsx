@@ -8,7 +8,9 @@ interface Props {
 
 export default function RoutineCalendar({ children }: Props) {
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => setMounted(true), []);
+
   if (!mounted) return <></>;
 
   const { resolvedTheme } = useTheme();
