@@ -2,11 +2,13 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
+import TextArea from '../TextArea';
+
 interface Props {
   initialContent: string;
 }
 
-export default function BigPicture({ initialContent }: Props) {
+export default function BigPictureTextArea({ initialContent }: Props) {
   const supabase = createClientComponentClient();
   const [content, setContent] = useState(initialContent);
   const timerIdRef = useRef<undefined | NodeJS.Timeout>(undefined);
@@ -49,5 +51,5 @@ export default function BigPicture({ initialContent }: Props) {
     }, 800);
   };
 
-  return <textarea rows={100} value={content} onChange={onChange} />;
+  return <TextArea value={content} onChange={onChange} />;
 }
