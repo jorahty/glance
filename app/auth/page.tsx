@@ -18,7 +18,7 @@ export default function Auth() {
     <Flex justify="center" align="center" style={{ height: '70vh' }}>
       <Button color="gray" variant="surface" size="4" onClick={signIn}>
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-        Sign in with Google
+        Continue with Google
       </Button>
     </Flex>
   );
