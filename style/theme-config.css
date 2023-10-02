@@ -11,7 +11,7 @@ button,
   cursor: pointer !important;
 }
 
-.rt-TextArea.rt-variant-soft {
+.rt-TextAreaInput {
   background-color: var(--color-panel);
   border-radius: 5px;
   outline-offset: -2px;
