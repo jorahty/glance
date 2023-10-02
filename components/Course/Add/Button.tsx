@@ -1,4 +1,6 @@
 'use client';
+import { useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import {
   Dialog,
   TextField,
@@ -10,6 +12,14 @@ import {
 import { PlusIcon } from '@radix-ui/react-icons';
 
 export default function CourseAddButton() {
+  const supabase = createClientComponentClient();
+  const [name, setName] = useState('');
+
+  const addCourse = async () => {
+    await supabase.from('courses').insert({ name });
+    setName('');
+  };
+
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -23,7 +33,11 @@ export default function CourseAddButton() {
           <Text as="div" size="2" mb="1" weight="bold">
             Name
           </Text>
-          <TextField.Input defaultValue="" placeholder="Name" />
+          <TextField.Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+          />
         </label>
 
         <Flex gap="3" mt="3" justify="end">
@@ -33,7 +47,7 @@ export default function CourseAddButton() {
             </Button>
           </Dialog.Close>
           <Dialog.Close>
-            <Button>Save</Button>
+            <Button onClick={addCourse}>Save</Button>
           </Dialog.Close>
         </Flex>
       </Dialog.Content>
