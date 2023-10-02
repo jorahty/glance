@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler } from 'react';
+import { ChangeEvent, ChangeEventHandler, useEffect, useRef } from 'react';
 import { Inset, TextArea as RadixTextArea } from '@radix-ui/themes';
 
 interface Props {
@@ -7,6 +7,13 @@ interface Props {
 }
 
 export default function TextArea({ value, onChange }: Props) {
+  const myRef = useRef<HTMLTextAreaElement | null>(null);
+
+  useEffect(() => {
+    myRef.current!.style.height = 'auto';
+    myRef.current!.style.height = myRef.current!.scrollHeight + 'px';
+  }, []);
+
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     const textarea = event.target;
     textarea.style.height = 'auto';
@@ -18,6 +25,7 @@ export default function TextArea({ value, onChange }: Props) {
   return (
     <Inset style={{ flexGrow: 1 }} pt="current">
       <RadixTextArea
+        ref={myRef}
         value={value}
         onChange={handleChange}
         size="3"
