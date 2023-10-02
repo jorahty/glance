@@ -1,14 +1,15 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+'use client';
+import { useState } from 'react';
 import { Flex } from '@radix-ui/themes';
+
 import CourseCard from './Card';
 
-export default async function CourseList() {
-  const supabase = createServerComponentClient({ cookies });
+interface Props {
+  courses: any[];
+}
 
-  const { data: courses } = await supabase
-    .from('courses')
-    .select('id, name, content');
+export default async function CourseList({ courses: initialCourses }: Props) {
+  const [courses, setCourses] = useState(initialCourses);
 
   return (
     <Flex

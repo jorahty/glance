@@ -4,7 +4,7 @@ import Settings from '@/components/Settings';
 import BigPictureCard from '@/components/BigPicture/Card';
 import TodoCard from '@/components/Todo/Card';
 import Routine from '@/components/Routine/Card';
-import CourseList from '@/components/Course/List';
+import CourseContainer from '@/components/Course/Container';
 
 export default async function Account() {
   return (
@@ -16,7 +16,7 @@ export default async function Account() {
       </Flex>
       <Flex direction="column" gap="3">
         <Routine />
-        <CourseList />
+        <CourseContainer />
       </Flex>
     </Flex>
   );
