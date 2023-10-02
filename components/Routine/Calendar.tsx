@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { Box, Inset } from '@radix-ui/themes';
 import { useTheme } from 'next-themes';
 
@@ -7,6 +8,12 @@ interface Props {
 }
 
 export default function RoutineCalendar({ calendarId }: Props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <></>;
+
   const { resolvedTheme } = useTheme();
 
   const filter =
