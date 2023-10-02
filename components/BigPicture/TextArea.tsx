@@ -35,10 +35,6 @@ export default function BigPictureTextArea({ initialContent }: Props) {
     };
   }, [supabase]);
 
-  const sendContent = async (content: string) => {
-    await supabase.from('big_pictures').upsert({ content });
-  };
-
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newContent = e.target.value;
     setContent(newContent);
@@ -49,6 +45,10 @@ export default function BigPictureTextArea({ initialContent }: Props) {
       setIsTyping(false);
       sendContent(newContent);
     }, 800);
+  };
+
+  const sendContent = async (content: string) => {
+    await supabase.from('big_pictures').upsert({ content });
   };
 
   return <TextArea value={content} onChange={onChange} />;
