@@ -7,9 +7,8 @@ import TodoTextArea from './TextArea';
 export default async function TodoCard() {
   const supabase = createServerComponentClient({ cookies });
 
-  const {
-    data: { content },
-  } = await supabase.from('todos').select().single();
+  const { content } = (await supabase.from('todos').select('content').single())
+    .data!;
 
   return (
     <Card>

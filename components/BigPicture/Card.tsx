@@ -7,9 +7,9 @@ import BigPictureTextArea from './TextArea';
 export default async function BigPictureCard() {
   const supabase = createServerComponentClient({ cookies });
 
-  const {
-    data: { content },
-  } = await supabase.from('big_pictures').select().single();
+  const { content } = (
+    await supabase.from('big_pictures').select('content').single()
+  ).data!;
 
   return (
     <Card>

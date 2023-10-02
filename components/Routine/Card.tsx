@@ -8,9 +8,9 @@ import RoutineCalendar from './Calendar';
 export default async function Routine() {
   const supabase = createServerComponentClient({ cookies });
 
-  const {
-    data: { calendar_id: calendarId },
-  } = await supabase.from('routines').select().single();
+  const { calendar_id: calendarId } = (
+    await supabase.from('routines').select('calendar_id').single()
+  ).data!;
 
   return (
     <Card style={{ height: '70vh' }}>
