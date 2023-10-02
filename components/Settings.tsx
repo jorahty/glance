@@ -1,20 +1,31 @@
-import { Button, Flex, IconButton } from '@radix-ui/themes';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { Button, Flex, IconButton, Tooltip } from '@radix-ui/themes';
 import { QuestionMarkIcon, ExitIcon } from '@radix-ui/react-icons';
 
 import ThemeChanger from './ThemeChanger';
 
-export default function Settings() {
+export default async function Settings() {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    email,
+    user_metadata: { full_name },
+  } = (await supabase.auth.getUser()).data.user!;
+
   return (
     <Flex gap="3">
       <IconButton>
         <QuestionMarkIcon width="18" height="18" />
       </IconButton>
       <ThemeChanger />
-      <form action="/auth/signout" method="post">
-        <Button variant="surface" color="gray">
-          <ExitIcon width="18" height="18" /> Logout
-        </Button>
-      </form>
+      <Tooltip content={`${full_name} (${email})`}>
+        <form action="/auth/signout" method="post">
+          <Button variant="surface" color="gray">
+            <ExitIcon width="18" height="18" /> Logout
+          </Button>
+        </form>
+      </Tooltip>
     </Flex>
   );
 }
