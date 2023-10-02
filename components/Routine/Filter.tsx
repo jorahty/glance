@@ -1,5 +1,4 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
 interface Props {
@@ -7,12 +6,6 @@ interface Props {
 }
 
 export default function RoutineCalendar({ children }: Props) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return <></>;
-
   const { resolvedTheme } = useTheme();
 
   const filter =

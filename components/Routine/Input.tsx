@@ -1,8 +1,21 @@
 'use client';
+import { useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button, Dialog, Flex, Text, TextField } from '@radix-ui/themes';
 import { Pencil2Icon } from '@radix-ui/react-icons';
 
-export default function RoutineInput() {
+interface Props {
+  calendarId: string;
+}
+
+export default function RoutineInput({ calendarId: initalCalendarId }: Props) {
+  const supabase = createClientComponentClient();
+  const [calendarId, setCalendarId] = useState(initalCalendarId);
+
+  const updateRoutine = async () => {
+    await supabase.from('routines').upsert({ calendar_id: calendarId });
+  };
+
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -17,7 +30,8 @@ export default function RoutineInput() {
             Google Calendar ID
           </Text>
           <TextField.Input
-            defaultValue="jtennant@ucsc.edu"
+            value={calendarId}
+            onChange={(e) => setCalendarId(e.target.value)}
             placeholder="Google Calendar ID"
           />
         </label>
@@ -29,7 +43,7 @@ export default function RoutineInput() {
             </Button>
           </Dialog.Close>
           <Dialog.Close>
-            <Button>Save</Button>
+            <Button onClick={updateRoutine}>Save</Button>
           </Dialog.Close>
         </Flex>
       </Dialog.Content>

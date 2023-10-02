@@ -13,7 +13,10 @@ export default function RoutineCalendar({
   calendarId: initialCalendarId,
 }: Props) {
   const supabase = createClientComponentClient();
+  const [mounted, setMounted] = useState(false);
   const [calendarId, setCalendarId] = useState(initialCalendarId);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const channel = supabase
@@ -35,6 +38,8 @@ export default function RoutineCalendar({
       supabase.removeChannel(channel);
     };
   }, [supabase]);
+
+  if (!mounted) return <></>;
 
   return (
     <Inset style={{ flexGrow: 1 }} pt="current">

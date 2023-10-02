@@ -17,7 +17,7 @@ export default async function Routine() {
       <Flex direction="column" gap="3" height="100%">
         <Flex justify="between">
           <Heading>Routine</Heading>
-          <RoutineInput />
+          <RoutineInput calendarId={calendarId} />
         </Flex>
         <RoutineCalendar calendarId={calendarId} />
       </Flex>
