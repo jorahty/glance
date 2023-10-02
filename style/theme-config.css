@@ -21,3 +21,13 @@ button,
 .rt-SelectTrigger {
   background-color: var(--gray-surface);
 }
+
+.light,
+.light-theme {
+  --color-page-background: var(--gray-4) !important;
+}
+
+.dark,
+.dark-theme {
+  --color-page-background: var(--color-surface) !important;
+}
