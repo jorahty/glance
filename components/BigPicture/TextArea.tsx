@@ -11,8 +11,8 @@ interface Props {
 export default function BigPictureTextArea({ initialContent }: Props) {
   const supabase = createClientComponentClient();
   const [content, setContent] = useState(initialContent);
-  const timerIdRef = useRef<undefined | NodeJS.Timeout>(undefined);
-  const [isTyping, setIsTyping] = useState(false);
+  const timerId = useRef<undefined | NodeJS.Timeout>(undefined);
+  const isTyping = useRef(false);
 
   useEffect(() => {
     const channel = supabase
@@ -25,7 +25,7 @@ export default function BigPictureTextArea({ initialContent }: Props) {
           table: 'big_pictures',
         },
         (payload: any) => {
-          if (!isTyping) setContent(payload.new.content);
+          if (!isTyping.current) setContent(payload.new.content);
         }
       )
       .subscribe();
@@ -39,10 +39,10 @@ export default function BigPictureTextArea({ initialContent }: Props) {
     const newContent = e.target.value;
     setContent(newContent);
 
-    setIsTyping(true);
-    clearTimeout(timerIdRef.current);
-    timerIdRef.current = setTimeout(() => {
-      setIsTyping(false);
+    isTyping.current = true;
+    clearTimeout(timerId.current);
+    timerId.current = setTimeout(() => {
+      isTyping.current = false;
       sendContent(newContent);
     }, 800);
   };
