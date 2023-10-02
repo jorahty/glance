@@ -4,6 +4,7 @@ import Settings from '@/components/Settings';
 import BigPictureCard from '@/components/BigPicture/Card';
 import TodoCard from '@/components/Todo/Card';
 import Routine from '@/components/Routine/Card';
+import CourseList from '@/components/Course/List';
 
 export default async function Account() {
   return (
@@ -15,10 +16,8 @@ export default async function Account() {
       </Flex>
       <Flex direction="column" gap="3">
         <Routine />
-        <Placeholder />
+        <CourseList />
       </Flex>
     </Flex>
   );
 }
-
-const Placeholder = () => <Flex style={{ width: 'calc(100vw - 310px)' }} />;
