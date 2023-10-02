@@ -1,10 +1,11 @@
 import { Card, Flex, Heading } from '@radix-ui/themes';
 
+import { Course } from './Container';
 // import CourseMenu from './Menu';
 // import TextArea from '../TextArea';
 
 interface Props {
-  course: any;
+  course: Course;
 }
 
 export default function CourseCard({ course }: Props) {

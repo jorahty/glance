@@ -1,8 +1,12 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { Flex } from '@radix-ui/themes';
-import CourseCard from './Card';
 import CourseList from './List';
+
+export interface Course {
+  id: string;
+  name: string;
+  content: string;
+}
 
 export default async function CourseContainer() {
   const supabase = createServerComponentClient({ cookies });
