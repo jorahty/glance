@@ -1,29 +1,15 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { Box, Inset } from '@radix-ui/themes';
-import { useTheme } from 'next-themes';
+import { Inset } from '@radix-ui/themes';
+
+import Filter from './Filter';
 
 interface Props {
   calendarId: string;
 }
 
 export default function RoutineCalendar({ calendarId }: Props) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return <></>;
-
-  const { resolvedTheme } = useTheme();
-
-  const filter =
-    resolvedTheme === 'dark'
-      ? 'invert(100%) contrast(75%) hue-rotate(180deg)'
-      : undefined;
-
   return (
     <Inset style={{ flexGrow: 1 }} pt="current">
-      <Box style={{ filter: filter, height: '100%' }}>
+      <Filter>
         <iframe
           style={{
             flexGrow: 1,
@@ -33,7 +19,7 @@ export default function RoutineCalendar({ calendarId }: Props) {
           }}
           src={`https://calendar.google.com/calendar/embed?src=${calendarId}&ctz=America%2FLos_Angeles&showTitle=0&showNav=0&showDate=0&mode=WEEK&showTabs=0&showCalendars=0&showTz=0&showPrint=0`}
         />
-      </Box>
+      </Filter>
     </Inset>
   );
 }
