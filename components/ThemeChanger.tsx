@@ -12,7 +12,12 @@ export default function ThemeChanger() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <></>;
+  if (!mounted)
+    return (
+      <Select.Root>
+        <Select.Trigger style={{ minWidth: 120 }} />
+      </Select.Root>
+    );
 
   return (
     <>
