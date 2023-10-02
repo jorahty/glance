@@ -8,6 +8,9 @@ interface Props {
   children: React.ReactNode;
 }
 
+// <ThemeProvider /> causes an console warning:
+// "Warning: Extra attributes from the server: class,style"
+
 export default function Theme({ children }: Props) {
   return (
     <ThemeProvider attribute="class">
