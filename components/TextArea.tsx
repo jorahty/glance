@@ -1,7 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { ChangeEventHandler, useEffect, useRef } from 'react';
 import { Inset, TextArea as RadixTextArea } from '@radix-ui/themes';
 
-export default function TextArea({ value, onChange }: any) {
+interface Props {
+  value: string;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
+}
+
+export default function TextArea({ value, onChange }: Props) {
   const myRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
@@ -16,9 +21,8 @@ export default function TextArea({ value, onChange }: any) {
       <RadixTextArea
         ref={myRef}
         value={value}
-        size="3"
         onChange={onChange}
-        style={{ height: '100%' }}
+        size="3"
         variant="soft"
       />
     </Inset>
