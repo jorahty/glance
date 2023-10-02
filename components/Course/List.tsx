@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Flex } from '@radix-ui/themes';
 
 import CourseCard from './Card';
 import { Course } from './Container';
@@ -54,17 +53,10 @@ export default function CourseList({ courses: initialCourses }: Props) {
   }, [supabase]);
 
   return (
-    <Flex
-      grow="1"
-      gap="3"
-      align="start"
-      style={{
-        width: 'calc(100vw - 310px)',
-        overflowY: 'scroll',
-      }}>
+    <>
       {courses?.map((course) => (
         <CourseCard key={course.id} course={course} />
       ))}
-    </Flex>
+    </>
   );
 }
