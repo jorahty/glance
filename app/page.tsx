@@ -4,6 +4,7 @@ import { Flex } from '@radix-ui/themes';
 
 import Settings from '@/components/Settings';
 import BigPictureCard from '@/components/BigPicture/Card';
+import TodoCard from '@/components/Todo/Card';
 
 export default async function Account() {
   const supabase = createServerComponentClient({ cookies });
@@ -17,6 +18,7 @@ export default async function Account() {
       <Flex direction="column" gap="3" grow="1">
         <Settings />
         <BigPictureCard initialContent={content} />
+        <TodoCard initialContent={content} />
       </Flex>
       <Flex direction="column" gap="3"></Flex>
     </Flex>
