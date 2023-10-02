@@ -14,7 +14,7 @@ export default function CourseCard({ course }: Props) {
       <Flex direction="column" gap="3" height="100%" style={{ width: '300px' }}>
         <Flex justify="between">
           <Heading>{course.name}</Heading>
-          <CourseMenu />
+          <CourseMenu courseId={course.id} />
         </Flex>
         <CourseTextArea initialContent={course.content} courseId={course.id} />
       </Flex>

@@ -11,7 +11,11 @@ import CourseDialogAdd from './Dialog/Add';
 import CourseDialogRename from './Dialog/Rename';
 import CourseDialogDelete from './Dialog/Delete';
 
-export default function CourseMenu() {
+interface Props {
+  courseId: string;
+}
+
+export default function CourseMenu({ courseId }: Props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [hasOpenDialog, setHasOpenDialog] = useState(false);
   const dropdownTriggerRef = useRef(null);
@@ -74,7 +78,7 @@ export default function CourseMenu() {
           }
           onSelect={handleDialogItemSelect}
           onOpenChange={handleDialogItemOpenChange}>
-          <CourseDialogDelete />
+          <CourseDialogDelete courseId={courseId} />
         </DialogItem>
       </DropdownMenu.Content>
     </DropdownMenu.Root>

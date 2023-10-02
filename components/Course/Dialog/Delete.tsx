@@ -1,6 +1,17 @@
 import { Button, Dialog, Flex } from '@radix-ui/themes';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-export default function CourseDialogDelete() {
+interface Props {
+  courseId: string;
+}
+
+export default function CourseDialogDelete({ courseId }: Props) {
+  const supabase = createClientComponentClient();
+
+  const deleteCourse = async () => {
+    await supabase.from('courses').delete().eq('id', courseId);
+  };
+
   return (
     <>
       <Dialog.Title>Delete</Dialog.Title>
@@ -16,7 +27,9 @@ export default function CourseDialogDelete() {
           </Button>
         </Dialog.Close>
         <Dialog.Close>
-          <Button color="red">Delete</Button>
+          <Button color="red" onClick={deleteCourse}>
+            Delete
+          </Button>
         </Dialog.Close>
       </Flex>
     </>
