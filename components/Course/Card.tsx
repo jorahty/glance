@@ -2,7 +2,7 @@ import { Card, Flex, Heading } from '@radix-ui/themes';
 
 import { Course } from './Container';
 // import CourseMenu from './Menu';
-// import TextArea from '../TextArea';
+import CourseTextArea from './TextArea';
 
 interface Props {
   course: Course;
@@ -16,8 +16,7 @@ export default function CourseCard({ course }: Props) {
           <Heading>{course.name}</Heading>
           {/* <CourseMenu /> */}
         </Flex>
-        {/* <TextArea /> */}
-        <pre>{course.content}</pre>
+        <CourseTextArea initialContent={course.content} courseId={course.id} />
       </Flex>
     </Card>
   );
