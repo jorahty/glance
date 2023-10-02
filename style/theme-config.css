@@ -13,9 +13,9 @@ button,
 
 .rt-TextAreaInput {
   background-color: var(--color-panel);
+  color: var(--gray-12);
   border-radius: 5px;
   outline-offset: -2px;
-  color: var(--gray-12);
 }
 
 .rt-SelectTrigger {

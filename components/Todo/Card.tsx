@@ -8,8 +8,8 @@ interface Props {
 
 export default function TodoCard({ initialContent }: Props) {
   return (
-    <Card style={{ flexGrow: 1, padding: 0 }}>
-      <Flex direction="column" gap="3" height="100%">
+    <Card>
+      <Flex direction="column" gap="3">
         <Heading>Todo</Heading>
         <TodoTextArea initialContent={initialContent} />
       </Flex>
