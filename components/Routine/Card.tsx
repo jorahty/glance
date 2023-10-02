@@ -2,7 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { Card, Flex, Heading } from '@radix-ui/themes';
 
-// import RoutineInput from './RoutineInput';
+import RoutineInput from './Input';
 import RoutineCalendar from './Calendar';
 
 export default async function Routine() {
@@ -17,7 +17,7 @@ export default async function Routine() {
       <Flex direction="column" gap="3" height="100%">
         <Flex justify="between">
           <Heading>Routine</Heading>
-          {/* <RoutineInput /> */}
+          <RoutineInput />
         </Flex>
         <RoutineCalendar calendarId={calendarId} />
       </Flex>
