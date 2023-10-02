@@ -7,21 +7,16 @@ interface Props {
 }
 
 export default function TextArea({ value, onChange }: Props) {
-  const myRef = useRef<HTMLTextAreaElement | null>(null);
-
-  useEffect(() => {
-    if (myRef.current) {
-      myRef.current.style.height = 'auto';
-      myRef.current.style.height = myRef.current.scrollHeight + 'px';
-    }
-  }, [value]);
+  const numberOfLines = value.split('\n').length;
 
   return (
     <Inset style={{ flexGrow: 1 }} pt="current">
       <RadixTextArea
-        ref={myRef}
         value={value}
         onChange={onChange}
+        style={{
+          height: `calc(${numberOfLines} * var(--line-height-3) + var(--space-2) * 2)`,
+        }}
         size="3"
         variant="soft"
       />
