@@ -16,7 +16,7 @@ export default function TodoTextArea({ initialContent }: Props) {
 
   useEffect(() => {
     const channel = supabase
-      .channel('')
+      .channel('realtime todo')
       .on(
         'postgres_changes',
         {

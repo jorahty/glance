@@ -17,7 +17,7 @@ export default function RoutineCalendar({
 
   useEffect(() => {
     const channel = supabase
-      .channel('')
+      .channel('realtime routine')
       .on(
         'postgres_changes',
         {

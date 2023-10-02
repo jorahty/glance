@@ -16,7 +16,7 @@ export default function BigPictureTextArea({ initialContent }: Props) {
 
   useEffect(() => {
     const channel = supabase
-      .channel('')
+      .channel('realtime big picture')
       .on(
         'postgres_changes',
         {
