@@ -10,9 +10,11 @@ export default function Settings() {
         <QuestionMarkIcon width="18" height="18" />
       </IconButton>
       <ThemeChanger />
-      <Button variant="surface" color="gray">
-        <ExitIcon width="18" height="18" /> Logout
-      </Button>
+      <form action="/auth/signout" method="post">
+        <Button variant="surface" color="gray">
+          <ExitIcon width="18" height="18" /> Logout
+        </Button>
+      </form>
     </Flex>
   );
 }
