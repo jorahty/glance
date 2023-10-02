@@ -1,20 +1,23 @@
+import { useEffect, useRef } from 'react';
 import { Inset, TextArea as RadixTextArea } from '@radix-ui/themes';
 
 export default function TextArea({ value, onChange }: any) {
-  function handleChange(event: any) {
-    const textarea = event.target;
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+  const myRef = useRef<HTMLTextAreaElement | null>(null);
 
-    onChange(event);
-  }
+  useEffect(() => {
+    if (myRef.current) {
+      myRef.current.style.height = 'auto';
+      myRef.current.style.height = myRef.current.scrollHeight + 'px';
+    }
+  }, [value]);
 
   return (
     <Inset style={{ flexGrow: 1 }} pt="current">
       <RadixTextArea
+        ref={myRef}
         value={value}
         size="3"
-        onChange={handleChange}
+        onChange={onChange}
         style={{ height: '100%' }}
         variant="soft"
       />
