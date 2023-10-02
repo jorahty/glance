@@ -2,6 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 import BigPicture from '@/components/BigPicture';
+import ThemeChanger from '@/components/ThemeChanger';
 
 export default async function Account() {
   const supabase = createServerComponentClient({ cookies });
@@ -10,5 +11,10 @@ export default async function Account() {
     data: { content },
   } = await supabase.from('big_pictures').select().single();
 
-  return <BigPicture initialContent={content} />;
+  return (
+    <>
+      <ThemeChanger />
+      <BigPicture initialContent={content} />
+    </>
+  );
 }
