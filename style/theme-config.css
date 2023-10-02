@@ -11,10 +11,11 @@ button,
   cursor: pointer !important;
 }
 
-.rt-TextAreaInput {
+.rt-TextArea.rt-variant-soft {
   background-color: var(--color-panel);
   border-radius: 5px;
   outline-offset: -2px;
+  color: var(--gray-12);
 }
 
 .rt-SelectTrigger {
