@@ -1,12 +1,11 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@/util/createServerSupabaseClient';
 import { Card, Flex, Heading } from '@radix-ui/themes';
 
 import RoutineInput from './Input';
 import RoutineCalendar from './Calendar';
 
 export default async function Routine() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient();
 
   const { calendar_id: calendarId } = (
     await supabase.from('routines').select('calendar_id').single()

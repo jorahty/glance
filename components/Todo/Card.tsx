@@ -1,11 +1,10 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@/util/createServerSupabaseClient';
 import { Card, Flex, Heading } from '@radix-ui/themes';
 
 import TodoTextArea from './TextArea';
 
 export default async function TodoCard() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient();
 
   const { content } = (await supabase.from('todos').select('content').single())
     .data!;

@@ -1,11 +1,10 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@/util/createServerSupabaseClient';
 import { Card, Flex, Heading } from '@radix-ui/themes';
 
 import BigPictureTextArea from './TextArea';
 
 export default async function BigPictureCard() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient();
 
   const { content } = (
     await supabase.from('big_pictures').select('content').single()

@@ -1,12 +1,11 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@/util/createServerSupabaseClient';
 import { Button, Flex, IconButton, Tooltip } from '@radix-ui/themes';
 import { QuestionMarkIcon, ExitIcon } from '@radix-ui/react-icons';
 
 import ThemeChanger from './ThemeChanger';
 
 export default async function Settings() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient();
 
   const {
     email,
