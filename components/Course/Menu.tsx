@@ -79,7 +79,7 @@ export default function CourseMenu({ course }: Props) {
           }
           onSelect={handleDialogItemSelect}
           onOpenChange={handleDialogItemOpenChange}>
-          <CourseDialogDelete courseId={course.id} />
+          <CourseDialogDelete course={course} />
         </DialogItem>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
@@ -106,3 +106,5 @@ const DialogItem = forwardRef((props: any, forwardedRef) => {
     </Dialog.Root>
   );
 }) as any;
+
+DialogItem.displayName = 'DialogItem'; // Set the display name here

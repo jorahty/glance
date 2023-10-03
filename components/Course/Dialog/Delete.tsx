@@ -1,16 +1,18 @@
 import { Button, Dialog, Flex } from '@radix-ui/themes';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
+import { Course } from '../Container';
+
 interface Props {
-  courseId: string;
+  course: Course;
 }
 
-export default function CourseDialogDelete({ courseId }: Props) {
+export default function CourseDialogDelete({ course }: Props) {
   const supabase = createClientComponentClient();
 
   const deleteCourse = async () => {
     const { error } = await supabase.rpc('delete_course', {
-      course_id: courseId,
+      course_id: course.id,
     });
     if (error) alert(error.message);
   };
@@ -20,7 +22,7 @@ export default function CourseDialogDelete({ courseId }: Props) {
       <Dialog.Title>Delete</Dialog.Title>
 
       <Dialog.Description size="2">
-        Are you sure? Deleting "Course" cannot be undone.
+        Are you sure? Deleting <b>{course.name}</b> cannot be undone.
       </Dialog.Description>
 
       <Flex gap="3" mt="3" justify="end">

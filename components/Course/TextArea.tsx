@@ -35,7 +35,7 @@ export default function CourseTextArea({ initialContent, courseId }: Props) {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [supabase]);
+  }, [supabase, courseId]);
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const newContent = e.target.value;
