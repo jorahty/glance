@@ -58,7 +58,7 @@ export default function CourseMenu({ course }: Props) {
           }
           onSelect={handleDialogItemSelect}
           onOpenChange={handleDialogItemOpenChange}>
-          <CourseDialogAdd />
+          <CourseDialogAdd prev_course={course.id} />
         </DialogItem>
         <DialogItem
           triggerChildren={
