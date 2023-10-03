@@ -3,7 +3,6 @@ import { cookies } from 'next/headers';
 import { Flex } from '@radix-ui/themes';
 
 import CourseList from './List';
-import CourseButton from './Button';
 
 export interface Course {
   id: string;
@@ -28,7 +27,6 @@ export default async function CourseContainer() {
         overflowY: 'scroll',
       }}>
       <CourseList courses={courses!} />
-      <CourseButton />
     </Flex>
   );
 }

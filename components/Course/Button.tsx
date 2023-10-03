@@ -3,7 +3,11 @@ import { Dialog, IconButton } from '@radix-ui/themes';
 import { PlusIcon } from '@radix-ui/react-icons';
 import CourseDialogAdd from './Dialog/Add';
 
-export default function CourseButton() {
+interface Props {
+  prev_course: string;
+}
+
+export default function CourseButton({ prev_course }: Props) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -13,7 +17,7 @@ export default function CourseButton() {
       </Dialog.Trigger>
 
       <Dialog.Content style={{ maxWidth: 450 }}>
-        <CourseDialogAdd />
+        <CourseDialogAdd prev_course={prev_course} />
       </Dialog.Content>
     </Dialog.Root>
   );

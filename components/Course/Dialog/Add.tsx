@@ -2,12 +2,17 @@ import { useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Text, TextField, Flex, Dialog, Button } from '@radix-ui/themes';
 
-export default function CourseDialogAdd() {
+interface Props {
+  prev_course: string;
+}
+
+export default function CourseDialogAdd({ prev_course }: Props) {
   const supabase = createClientComponentClient();
   const [name, setName] = useState('');
 
   const addCourse = async () => {
-    await supabase.from('courses').insert({ name });
+    // await supabase.from('courses').insert({ name });
+    alert(`insert ${name} after ${prev_course}`);
     setName('');
   };
 

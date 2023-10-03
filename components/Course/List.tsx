@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-import CourseCard from './Card';
 import { Course } from './Container';
+import CourseCard from './Card';
+import CourseButton from './Button';
 
 interface Props {
   courses: Course[];
@@ -56,12 +57,14 @@ export default function CourseList({ courses: initialCourses }: Props) {
   }, [supabase]);
 
   const sortedCourses = sortCourses(courses);
+  const lastCourse = sortedCourses[sortedCourses.length - 1];
 
   return (
     <>
       {sortedCourses.map((course) => (
         <CourseCard key={course.id} course={course} />
       ))}
+      <CourseButton prev_course={lastCourse.id} />
     </>
   );
 }
