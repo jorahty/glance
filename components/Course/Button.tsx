@@ -11,7 +11,7 @@ export default function CourseButton({ prev_course }: Props) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <IconButton mr="3">
+        <IconButton style={{ marginRight: 'max(300px, 50vw)' }}>
           <PlusIcon width="18" height="18" />
         </IconButton>
       </Dialog.Trigger>
