@@ -44,7 +44,7 @@ export default function CourseTextArea({ initialContent, courseId }: Props) {
     clearTimeout(timerId.current);
     timerId.current = setTimeout(() => {
       sendContent(newContent);
-    }, 800);
+    }, 2000);
   };
 
   const sendContent = async (content: string) => {

@@ -44,7 +44,7 @@ export default function BigPictureTextArea({ initialContent }: Props) {
     timerId.current = setTimeout(() => {
       isTyping.current = false;
       sendContent(newContent);
-    }, 800);
+    }, 2000);
   };
 
   const sendContent = async (content: string) => {
