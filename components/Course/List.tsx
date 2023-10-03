@@ -64,7 +64,7 @@ export default function CourseList({ courses: initialCourses }: Props) {
       {sortedCourses.map((course) => (
         <CourseCard key={course.id} course={course} />
       ))}
-      <CourseButton prev_course={lastCourse.id} />
+      <CourseButton prev_course={lastCourse?.id} />
     </>
   );
 }

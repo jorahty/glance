@@ -13,7 +13,7 @@ export default function CourseDialogAdd({ prev_course }: Props) {
   const addCourse = async () => {
     await supabase.rpc('insert_course', {
       name,
-      prev_course,
+      prev_course: prev_course || null,
     });
     setName('');
   };
