@@ -7,15 +7,16 @@ import {
   TrashIcon,
 } from '@radix-ui/react-icons';
 
+import { Course } from './Container';
 import CourseDialogAdd from './Dialog/Add';
 import CourseDialogRename from './Dialog/Rename';
 import CourseDialogDelete from './Dialog/Delete';
 
 interface Props {
-  courseId: string;
+  course: Course;
 }
 
-export default function CourseMenu({ courseId }: Props) {
+export default function CourseMenu({ course }: Props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [hasOpenDialog, setHasOpenDialog] = useState(false);
   const dropdownTriggerRef = useRef(null);
@@ -67,7 +68,7 @@ export default function CourseMenu({ courseId }: Props) {
           }
           onSelect={handleDialogItemSelect}
           onOpenChange={handleDialogItemOpenChange}>
-          <CourseDialogRename />
+          <CourseDialogRename course={course} />
         </DialogItem>
         <DialogItem
           color="red"
@@ -78,7 +79,7 @@ export default function CourseMenu({ courseId }: Props) {
           }
           onSelect={handleDialogItemSelect}
           onOpenChange={handleDialogItemOpenChange}>
-          <CourseDialogDelete courseId={courseId} />
+          <CourseDialogDelete courseId={course.id} />
         </DialogItem>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
