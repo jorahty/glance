@@ -7,11 +7,12 @@ import { DesktopIcon } from '@radix-ui/react-icons';
 
 export default function Auth() {
   const supabase = createClientComponentClient();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(1000);
   const [warningDismissed, setWarningDismissed] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
 
     window.addEventListener('resize', handleResize);
 
