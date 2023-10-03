@@ -8,7 +8,7 @@ import CourseButton from './Button';
 export interface Course {
   id: string;
   user_id: string;
-  index: number;
+  prev_course: string;
   name: string;
   content: string;
 }
@@ -16,10 +16,7 @@ export interface Course {
 export default async function CourseContainer() {
   const supabase = createServerComponentClient({ cookies });
 
-  const { data: courses } = await supabase
-    .from('courses')
-    .select()
-    .order('index');
+  const { data: courses } = await supabase.from('courses').select();
 
   return (
     <Flex

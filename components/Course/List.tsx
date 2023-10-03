@@ -35,7 +35,7 @@ export default function CourseList({ courses: initialCourses }: Props) {
               );
               if (index !== -1) {
                 newCourses[index].name = payload.new.name;
-                newCourses[index].index = payload.new.index;
+                newCourses[index].prev_course = payload.new.prev_course;
               }
             } else if (payload.eventType === 'DELETE') {
               const index = newCourses.findIndex(
@@ -55,14 +55,41 @@ export default function CourseList({ courses: initialCourses }: Props) {
     };
   }, [supabase]);
 
+  const sortedCourses = sortCourses(courses);
+
   return (
     <>
-      {courses
-        .slice()
-        .sort((a: Course, b: Course) => a.index - b.index)
-        .map((course) => (
-          <CourseCard key={course.id} course={course} />
-        ))}
+      {sortedCourses.map((course) => (
+        <CourseCard key={course.id} course={course} />
+      ))}
     </>
   );
+}
+
+// From ChatGPT
+function sortCourses(courses: Course[]) {
+  const sortedCourses = [];
+
+  // Find the course with prev_course as null (the starting point)
+  const startCourse = courses.find((course) => course.prev_course === null);
+
+  if (startCourse) {
+    // Add the startCourse to the sortedCourses array
+    sortedCourses.push(startCourse);
+
+    // Recursively find and add the next courses based on prev_course
+    const findNextCourse = (prevCourseId: string) => {
+      const nextCourse = courses.find(
+        (course) => course.prev_course === prevCourseId
+      );
+      if (nextCourse) {
+        sortedCourses.push(nextCourse);
+        findNextCourse(nextCourse.id);
+      }
+    };
+
+    findNextCourse(startCourse.id);
+  }
+
+  return sortedCourses;
 }
