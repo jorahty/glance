@@ -11,8 +11,10 @@ export default function CourseDialogAdd({ prev_course }: Props) {
   const [name, setName] = useState('');
 
   const addCourse = async () => {
-    // await supabase.from('courses').insert({ name });
-    alert(`insert ${name} after ${prev_course}`);
+    await supabase.rpc('insert_course', {
+      name,
+      prev_course,
+    });
     setName('');
   };
 
