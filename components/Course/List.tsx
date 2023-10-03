@@ -33,7 +33,10 @@ export default function CourseList({ courses: initialCourses }: Props) {
               const index = newCourses.findIndex(
                 (course) => course.id === payload.new.id
               );
-              if (index !== -1) newCourses[index].name = payload.new.name;
+              if (index !== -1) {
+                newCourses[index].name = payload.new.name;
+                newCourses[index].index = payload.new.index;
+              }
             } else if (payload.eventType === 'DELETE') {
               const index = newCourses.findIndex(
                 (course) => course.id === payload.old.id
