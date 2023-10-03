@@ -7,6 +7,8 @@ import CourseButton from './Button';
 
 export interface Course {
   id: string;
+  user_id: string;
+  index: number;
   name: string;
   content: string;
 }
@@ -16,7 +18,8 @@ export default async function CourseContainer() {
 
   const { data: courses } = await supabase
     .from('courses')
-    .select('id, name, content');
+    .select()
+    .order('index');
 
   return (
     <Flex

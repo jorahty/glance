@@ -33,12 +33,12 @@ export default function CourseList({ courses: initialCourses }: Props) {
               const index = newCourses.findIndex(
                 (course) => course.id === payload.new.id
               );
-              newCourses[index].name = payload.new.name;
+              if (index !== -1) newCourses[index].name = payload.new.name;
             } else if (payload.eventType === 'DELETE') {
               const index = newCourses.findIndex(
                 (course) => course.id === payload.old.id
               );
-              newCourses.splice(index, 1);
+              if (index !== -1) newCourses.splice(index, 1);
             }
 
             return newCourses;
@@ -54,9 +54,12 @@ export default function CourseList({ courses: initialCourses }: Props) {
 
   return (
     <>
-      {courses?.map((course) => (
-        <CourseCard key={course.id} course={course} />
-      ))}
+      {courses
+        .slice()
+        .sort((a: Course, b: Course) => a.index - b.index)
+        .map((course) => (
+          <CourseCard key={course.id} course={course} />
+        ))}
     </>
   );
 }
