@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button, Flex } from '@radix-ui/themes';
 
@@ -17,7 +18,12 @@ export default function Auth() {
   return (
     <Flex justify="center" align="center" style={{ height: '70vh' }}>
       <Button color="gray" variant="surface" size="4" onClick={signIn}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+        <Image
+          src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+          alt="Google Logo"
+          width={24}
+          height={24}
+        />
         Continue with Google
       </Button>
     </Flex>
