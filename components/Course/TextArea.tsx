@@ -48,7 +48,7 @@ export default function CourseTextArea({ initialContent, courseId }: Props) {
   };
 
   const sendContent = async (content: string) => {
-    await supabase.from('courses').upsert({ id: courseId, content });
+    await supabase.from('courses').update({ content }).eq('id', courseId);
   };
 
   return <TextArea value={content} onChange={onChange} />;
