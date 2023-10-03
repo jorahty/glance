@@ -9,8 +9,10 @@ export default function CourseDialogDelete({ courseId }: Props) {
   const supabase = createClientComponentClient();
 
   const deleteCourse = async () => {
-    // await supabase.from('courses').delete().eq('id', courseId);
-    alert(`delete ${courseId}`);
+    const { error } = await supabase.rpc('delete_course', {
+      course_id: courseId,
+    });
+    if (error) alert(error.message);
   };
 
   return (
