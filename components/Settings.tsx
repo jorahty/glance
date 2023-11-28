@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { createServerComponentClient } from '@/util/createServerSupabaseClient';
 import { Button, Flex, IconButton, Tooltip } from '@radix-ui/themes';
 import { QuestionMarkIcon, ExitIcon } from '@radix-ui/react-icons';
@@ -14,9 +16,11 @@ export default async function Settings() {
 
   return (
     <Flex gap="3">
-      <IconButton>
-        <QuestionMarkIcon width="18" height="18" />
-      </IconButton>
+      <Link href="/about">
+        <IconButton>
+          <QuestionMarkIcon width="18" height="18" />
+        </IconButton>
+      </Link>
       <ThemeChanger />
       <Tooltip content={`${full_name} (${email})`}>
         <form action="/auth/signout" method="post">
