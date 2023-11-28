@@ -5,7 +5,7 @@ export default async function About() {
     <Container>
       <Flex p="3" gap="3" direction="column">
         <Heading>About</Heading>
-        <Text>"Glance" is an organization tool I created for myself</Text>
+        <Text>&quot;Glance&quot; is an organization tool I created for myself</Text>
       </Flex>
     </Container>
   );
