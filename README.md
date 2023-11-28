@@ -1,3 +1,5 @@
-# glance
+# 👁️ Glance
 
-An organization tool.
+### [glance.jorahty.com →](https://glance.jorahty.com)
+
+An organization tool
